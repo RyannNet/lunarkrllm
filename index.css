@@ -2,7 +2,8 @@ body{
   background: #040408;
   color: #FFFFFF;
   font-family: DM Sans;
-  background-image: url('/VM/2155 Sem Título_20251013131426.png');
+  transition: transform 0.5s ease-in-out;
+  background-image: url('bg.png');
   background-size: cover;
 }
 .ic{
@@ -132,4 +133,8 @@ header{
   width: 100%;
   justify-content: space-between;
   margin-right: 15px;
+}
+body.slide-out {
+  transform: translateX(-100vw); /* arrasta para a esquerda */
+  opacity: 0.5; /* opcional, dá efeito de desvanecer */
 }
