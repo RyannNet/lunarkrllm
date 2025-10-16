@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cal+Sans&family=Climate+Crisis&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<div class="block">
+  <img class="denied_ic" src="erro.png">
+  <h1 class="acess">Acess denied</h1>
+  <p class="desc">There was a problem trying to access this site on your computer.</p>
+</div>
+<body>
+  <img class="icready" src="appr.png" height="60px" width="60px">
+  <h2 class="title">Pré-registro quase concluído</h2>
+  <p class="description">Seu pedido de acessar o nosso serviço será enviado para a nosa equipe, assim que terminarmos de analisar tudo direitinho enviaremos ao seu email inserido aqui a baixo:</p>
+  <div class="form-inp">
+    
+    <span class="plac">Insira o seu e-mail</span>
+  <input class="email" placeholder="e-mail">
+  </div>
+  <button id="not" class="not" onclick="click()">Notifique-me</button>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    body{
+      background: #090913;
+      font-family: DM Sans;
+      transition: transform 0.5s ease-in-out;
+      padding-top: 25px;
+    }
+    .icready{
+      border-radius: 35px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      margin-top: 8%;
+      border: 1px solid #242D4C;
+    }
+    .title{
+      color: #FFFFFF;
+      text-align: center;
+      margin-top: 5%;
+    }
+    .description{
+      color: #737995;
+      padding: 12px;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 3%;
+    }
+    .email{
+      border: 1px solid #202538;
+      width: 75%;
+      height: 50px;
+      background: none;
+      margin-right: auto;
+      margin-left: auto;
+      display: flex;
+      padding: 15px;
+      border-radius: 15px;
+      color: #5C627A;
+      font-family: outfit;
+      margin-top: 25px;
+      transition: 0.3s;
+    }
+    .email:hover{
+      transition: 0.4s;
+      border: 2px solid #3968FF;
+      outline: none;
+      box-shadow: 0 0 25px #909EFF33;
+      color: #C6D1FF;
+    }
+    .email::placeholder{
+      color: #5C627A;
+    }
+    .plac{
+      color: #D5E3F2;
+      margin-right: auto;
+      margin-left: 12%;
+    }
+    .form-inp{
+      margin-top: 5%;
+    }
+    .block{
+      background: #1A0000A1;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      top: 0;
+      position: fixed;
+      backdrop-filter: blur(15px);
+      z-index: 9999;
+    }
+    .acess{
+      color: #EF2929;
+      margin-top: 4%;
+    }
+    .desc{
+      color: #FFD1D1;
+      margin-top: 2%;
+    }
+    .denied_ic{
+      border-radius: 50px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      width: 95px;
+      height: 95px;
+      margin-top: 8%;
+      border: 1px solid #4C2424;
+    }
+    @media (max-width: 725px){
+      .block{
+        opacity: 0;
+        z-index: -9999;
+      }
+    }
+    .not{
+      background: #5B70FF;
+      color: #FFFFFF;
+      width: 65%;
+      height: 50px;
+      border: none;
+      border-radius: 15px;
+      font-family: Geologica;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      margin-top: 10%;
+    }
+
+body.slide-out {
+  transform: translateX(-100vw); /* arrasta para a esquerda */
+  opacity: 0.5; /* opcional, dá efeito de desvanecer */
+}
+  </style>
+  <script>
+    const btn = document.getElementById("not");
+    
+    btn.addEventListener("click",()=> {
+      window.location.href = "index.html"
+    });
+  </script>
+</body>
+
+</html>

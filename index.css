@@ -1,0 +1,135 @@
+body{
+  background: #040408;
+  color: #FFFFFF;
+  font-family: DM Sans;
+  background-image: url('/VM/2155 Sem Título_20251013131426.png');
+  background-size: cover;
+}
+.ic{
+  width: 120px;
+}
+.slogan{
+  font-family: DM Sans;
+  width: 75%;
+  
+}
+.c-s{
+  color: #2A7DFF;
+}
+.wel{
+  font-weight: 300;
+  font-family: DM Sans;
+  font-size: 22px;
+  padding: 5px;
+  text-align: center;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.circle{
+  background: #141418;
+  border: 1px solid #24232B;
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 35px;
+  display: flex;
+}
+.sect{
+  margin-left: 2%;
+  margin-top: 15%;
+}
+.desc{
+  color: #474754;
+  width: 85%;
+  margin-bottom: 1px;
+  font-size: 15px;
+}
+.lu{
+  color: #7C7C8D;
+}
+.sign, .log{
+  background: #1160FF;
+  border-radius: 25px;
+  color: #FFFFFF;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 50px;
+  border: none;
+  font-family: DM Sans;
+  margin-top: 5px;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+}
+.log{
+  background: #FFFFFF;
+  color: #000000;
+}
+footer{
+  margin-top: 85%;
+  
+}
+.end{
+  color: #646464;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 7%;
+}
+.dec{
+  color: #6A6A6A;
+  font-size: 9px;
+  text-align: center;
+  
+}
+.black{
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  text-align: center;
+  position: fixed;
+  overflow: hidden;
+  background: #000000D4;
+  backdrop-filter: blur(45px);
+}
+.warn{
+  color: #7C86FF;
+  margin-top: auto;
+  margin-top: 8%;
+}
+.hint{
+  color: #989898;
+  width: 75%;
+  text-align: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+.phone{
+  margin-top: 5%;
+}
+@media (max-width: 725px) {
+  .black{
+    opacity: 0;
+  }
+}
+.sign-up{
+  background: #5E64FF;
+  color: #FFFFFF;
+  width: 95px;
+  height: 40px;
+  border-radius: 8px;
+  margin-right: 10px;
+  border: none;
+}
+header{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-right: 15px;
+}
