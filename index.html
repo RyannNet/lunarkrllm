@@ -49,25 +49,24 @@
   </div>
 </body>
 <script>
-  const btn = document.getElementById("sendInfo");
-btn.addEventListener("click", async () => {
-  const ip = await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip);
-  const user = JSON.parse(localStorage.getItem('discord_user')); // info salva depois do login OAuth
-  
-  await fetch('https://seu-backend.onrender.com/send-info', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ip,
-      username: user.username,
-      discriminator: user.discriminator,
-      id: user.id,
-      avatarURL: user.avatarURL,
-      accountAge: user.accountAge
-    })
-  });
-  
-  window.location.href = "index.html";
+  const express = require("express");
+const cors = require("cors");
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.post("/send-info", (req, res) => {
+  const data = req.body;
+  console.log("📦 Dados recebidos:", data);
+  res.json({ status: "OK", recebido: data });
 });
+
+app.get("/", (req, res) => {
+  res.send("API do Lunark tá on 🔥");
+});
+
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => console.log("Server rodando na porta " + PORT));
 </script>
 </html>
