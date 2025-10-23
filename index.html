@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>LUN∆RK</title>
   <link rel="stylesheet" href="index.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cal+Sans&family=Climate+Crisis&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Bitcount+Prop+Single+Ink:wght@100..900&family=Cal+Sans&family=Climate+Crisis&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geologica:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&family=Mozilla+Headline:wght@200..700&family=Mozilla+Text:wght@200..700&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -31,31 +31,202 @@
   <p class="end">Infelizmente o login só funciona com Discord por conta da minha preguiça, e acredito que você também pense assim</p>
   
   </footer>
-  <script>
-  
-    const sign = document.getElementById("discord-login");
-    
-    sign.addEventListener("click", () => {
-  document.body.classList.add("slide-out"); // animação CSS
-  setTimeout(() => {
-    window.location.href = "request.html";
-  }, 400); // tempo da animação em ms
-});
-  </script>
-    <div class="black">
+  <div class="black">
     <img class="phone" src="/VM/2151 Sem Título_20251013011008.png" width="250px" height="250px">
     <h2 class="warn">Use esse sistema no seu celular.</h2>
     <p class="hint">Esse sistema da web foi planejado 100% para os celulares. Para PC não está disponível devido erros no design para computadores!</p>
   </div>
-</body>
 <script>
+  // Botão Discord inicia login OAuth2 e redireciona para request.html com o token
   const clientId = "1428223503391260774";
-const redirectUri = "https://lunarkrllm.vercel.app/";
-const scope = "identify email"; // adicione 'email' ou outros conforme necessário
-
-document.getElementById("discord-login").addEventListener("click", () => {
-  const url = `const url = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
-  window.location.href = url;
-});
+  const redirectUri = "https://lunarkrllm.vercel.app/request.html"; // Troque para sua URL real se necessário!
+  const scope = "identify email";
+  document.getElementById("discord-login").addEventListener("click", () => {
+    const url = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+    window.location.href = url;
+  });
 </script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #090913;
+  font-family: 'DM Sans', Arial, sans-serif;
+  padding-top: 25px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 45px 15px 45px;
+}
+
+.ic {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  border: 1px solid #202538;
+}
+
+.sign-up {
+  background: #3851FF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-family: Geologica;
+  padding: 10px 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 0;
+  transition: background 0.2s;
+}
+
+.sign-up:hover {
+  background: #39B7FF;
+}
+
+.sect {
+  padding: 40px 25px 0 25px;
+  text-align: left;
+}
+
+.wel {
+  color: #39B7FF;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.circle {
+  font-size: 1.2em;
+  margin-right: 7px;
+}
+
+.slogan {
+  color: #FFFFFF;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.c-s {
+  color: #39B7FF;
+}
+
+.desc {
+  color: #737995;
+  font-size: 1em;
+  margin-bottom: 24px;
+}
+
+.lu {
+  color: #39B7FF;
+  font-weight: bold;
+}
+
+footer {
+  background: none;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.sign {
+  background: #39B7FF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-family: Geologica;
+  padding: 10px 32px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 12px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.sign:hover {
+  background: #3851FF;
+}
+
+.dec {
+  color: #737995;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.log {
+  background: none;
+  color: #39B7FF;
+  border: 1px solid #39B7FF;
+  border-radius: 12px;
+  font-family: Geologica;
+  padding: 10px 32px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.log:hover {
+  background: #39B7FF;
+  color: #fff;
+}
+
+.end {
+  color: #FFD1D1;
+  font-size: 0.95em;
+  margin-top: 16px;
+}
+
+.black {
+  background: #18181f;
+  margin: 40px auto;
+  padding: 24px 18px;
+  border-radius: 18px;
+  text-align: center;
+  max-width: 340px;
+  box-shadow: 0 0 40px #20253833;
+}
+
+.phone {
+  border-radius: 25px;
+  border: 1px solid #39B7FF;
+}
+
+.warn {
+  color: #39B7FF;
+  margin-top: 18px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.hint {
+  color: #737995;
+  margin-top: 8px;
+  font-size: 0.98em;
+}
+
+/* Responsividade */
+@media (max-width: 725px){
+  header {
+    flex-direction: column;
+    gap: 18px;
+    padding: 15px 12px 10px 12px;
+  }
+  .sect {
+    padding: 18px 6px 0 6px;
+  }
+  .black {
+    max-width: 95vw;
+    padding: 16px 4px;
+  }
+}
+</style>
+</body>
 </html>
