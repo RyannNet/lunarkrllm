@@ -14,7 +14,7 @@
 
   <header>
     <img class="ic" src="ic.svg">
-    <button id="signup" class="sign-up">Sign</button>
+    <button class="sign-up" id="discord-login">Discord</button>
    </header>
   
      <div class="sect">
@@ -33,7 +33,7 @@
   </footer>
   <script>
   
-    const sign = document.querySelector(".sign-up");
+    const sign = document.getElementById("discord-login");
     
     sign.addEventListener("click", () => {
   document.body.classList.add("slide-out"); // animação CSS
@@ -49,24 +49,13 @@
   </div>
 </body>
 <script>
-  const express = require("express");
-const cors = require("cors");
-const app = express();
+  const clientId = "1428223503391260774";
+const redirectUri = "https://lunarkrllm.vercel.app/";
+const scope = "identify email"; // adicione 'email' ou outros conforme necessário
 
-app.use(cors());
-app.use(express.json());
-
-app.post("/send-info", (req, res) => {
-  const data = req.body;
-  console.log("📦 Dados recebidos:", data);
-  res.json({ status: "OK", recebido: data });
+document.getElementById("discord-login").addEventListener("click", () => {
+  const url = `const url = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+  window.location.href = url;
 });
-
-app.get("/", (req, res) => {
-  res.send("API do Lunark tá on 🔥");
-});
-
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log("Server rodando na porta " + PORT));
 </script>
 </html>
